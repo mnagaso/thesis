@@ -1,0 +1,125 @@
+% This is the conclusion of the dissertation, in English
+
+\chapter{Conclusions and perspectives}
+\label{chap:5}
+
+% conclusion of chapter 1
+In Chapter 1, the background knowledge of this thesis, i.e. history and international R\&D project of Sodium-cooled Fast Reactors (SFR), were explained.
+The required conditions for acoustic measurement system for SFRs are then explained and remarked.
+There are several factors that have a possibility to decrease the quality of acoustic measurement in a SFR.
+For this thesis, we selected the medium heterogeneity as a main target among those factors.
+The recent studies on thermo-hydraulic state in the core of SFRs were also introduced.
+Then former studies on the wave propagation in heterogeneous medium including liquid sodium were reviewed.
+At the same time, former studies on the simulation methods of fluctuation medium for SFR were also explained.
+It was mentioned that Spectral Element Method (SEM) was applied as the numerical simulation method which may calculate a wave propagation not only in heterogeneous acoustic medium but also elastic medium and reflection between acoustic-elastic boundary accurately.
+This was the first application of SEM for simulation of wave propagation in cooling medium of SFRs.
+
+% conclusion of chapter 2
+In Chapter 2, derivation of propagation equations of acoustic and elastic wave for heterogeneous and moving medium are explained.
+Then, we also explained about several numerical method of wave propagation simulation, including SEM and Finite-Difference Time-Domain (FDTD) methods.
+The numerical code SPECFEM was introduced, which we used for SEM calculation in this thesis as the highly developed numerical tool with great efficiency dedicated for use with high-performance computing.
+
+% conclusion of chapter 3
+In Chapter 3, we carried out studies on 2D wave propagation simulations in heterogeneous medium.
+At first, we introduced an experiment so called UPSILON which uses silicon oil as the propagation medium.
+This experiment was done in a former Ph.D. study.
+Using the configuration of UPSILON, we carried out a comparison study between SEM and some FDTD methods then the result showed the numerical advantage and efficiency of SEM for our application.
+
+Secondly, we applied SEM method for a simplified upper core region (i.e. sodium outlet and its surrounding region) and studied possible amount of acoustic fluctuation for thermometry installed in simplified upper core region in SFR.
+We applied 2D Gaussian random field as the simulation method of medium fluctuation for this part of study.
+
+% conclusion of chapter 4
+In Chapter 4, 4D simulation (spatial 3D with multiple time steps of medium states) are carried out using the experimental configuration PLAJEST.
+%% add summary on results here
+
+
+Several perspectives for future work can be proposed to develop the results of this work.
+
+\subsection*{Schlieren visualization of acoustic wave in heterogeneous medium}
+
+A first interesting one is to develop comparison between simulations and experiments to validate also all numerical developments with real data.
+The experiment UPSILON (see Chapter \ref{chap:3}) may be upgraded to propose a 3D validation by acquiring 3D experimental data.
+During this PhD work we begin to develop an UPSILON II experiment by using an array of transducer.
+Figure \ref{fig:upsilon_vis} show results we obtained using Schlieren observations.
+These results confirm those obtained by Massacret and are in accordance with simulations done with SPECFEM
+
+\begin{figure}[htbp]
+    \centerline{\includegraphics[width=16.0cm]{upsilon_vis.png}}
+    \slantedcaption{Schlieren visualization of wave distortion due to thermal gradient and corresponding simulations with SPECFEM.
+    a.	Wave propagation between the transducer (bottom) and the electric wires (up).
+    b.	Wave front without temperature gradient.
+    c.	Wave front simulation using SPECFEM2D.
+    d.	Wave front with temperature gradient.
+    e.	Wave front simulation including thermal gradient in the medium (see Chapter \ref{chap:3}).
+    }
+    \label{fig:upsilon_vis}
+\end{figure}
+
+The next step would be to develop 3D acquisition with an array of transducer.
+This experiment could be also be used to make benchmark to compare SPECFEM results to those obtained with other software dedicated to ultrasonic NDT simulation like CIVA and to the real data.
+In that case the precise modeling of an array of transducer in SPECFEM could be also a new development for this code.
+
+\subsection*{3D numerical simulation for complex geometry}
+
+A second perspective is to use the 3D potential of SPECFEM to make simulation for realistic, so complex, geometries of targets.
+Here we show a brief feasibility survey on this.
+As an example, in figure 5.2 we generated (using SOLIDWORKS) a geometry resembling the sodium outlet tube of Phenix reactor (figure 5.2).
+
+ In this figure (c) is the model meshed with tetrahedral element and (b), (d) are the model meshed with hexahedral element.
+ Part (b) indicates entire model including acoustic (liquid sodium) part and elastic (steel part).
+ The elements in red on the image (e) are ones whose Jacobian values are negative.
+ If a mesh includes this kind of element, the finite element scheme is not able to solve the matrix calculation.
+ This meshing failure occurs when hexahedral-meshed geometry has typical shapes i.e. hole or concavity.
+ Recently the mainstream of finite element method used in industry areas is tetrahedral element because it does not generate elements with negative Jacobian (but quality degradation by sliver elements may be happened.) and mesh generation is done almost automatically without manual intervention by a skilled computer-aided engineer (CAE),
+ which is almost always necessary for hexahedral-meshed models in the case of its having complex geometry (Hexahedral element is selected for the calculation which requires high accuracy and its geometry is comparatively simple).
+
+ At the moment SPECFEM3D supports only hexahedral element.
+ This is because that when using hexahedral element, the mass matrix become a diagonal matrix and this fact leads that the integration calculation may be done with nomo-loop.
+ This means that the duration for the calculation become much shorter than not diagonal case.
+ And moreover, as mentioned before, there is benefit on accuracy of the calculation. \parencite{KoMaTrTaWi01}
+ Regarding the recent progression of high-performance computing technology and in order to make the spectral element method more applicable for complex problems or shorten pre-process of a simulation, I propose to launch a project for future use of SPECFEM which modify the current SPECFEM2D,3D to add a support of triangle, tetrahedral element.
+ For the handling of triangle and tetrahedral element, I suggest to apply the Dubiner's idea for 2D case \cite{Dub93} and Sherwin's expansion for 3D \parencite{ShKarn95} because this idea is already well developed for 3D formulation and well developed open-source CFD code exists but no wave simulation dedicated software so prospect of the development is the clearest by these ideas.
+ In fact, these elements with negative Jacobian may be vanished by refining the fineness of the elements, while this type of potential difficulties, which would be caused by the complex geometry, have already pointed out.
+
+ The geometry of ASTRID reactor sub-assembly heads will be simpler than the Phenix ones (or with complex geometry far from the top of the heads and numerical ultrasonic field simulation), and these numerical problems would normally not occur.
+
+\begin{figure}[htbp]
+    \centerline{\includegraphics[width=16.0cm]{comp_mesh.png}}
+    \slantedcaption{
+    Examples of 3D meshing with realistic geometry.
+    (a) is an example of 3D relatively complex geometry resembling the sodium outlet of Phenix using SOLIDWORKS.
+    (b) shows entire geometry meshed with hexahedral elements.
+    (c) is the meshed tube with tetrahedral element.
+    (d) is the same geometry with hexahedral elements.
+    (e) shows elements with negative Jacobian.
+    }
+    \label{fig:comp_mesh}
+\end{figure}
+
+
+\subsection*{Calculation methods for moving medium and temporal transition of medium heterogeneity condition}
+
+% remarks on the state of transient
+
+In this thesis we have used the so-called `frozen fluid' hypothesis, i.e. the flow velocity field did not have an effect on wave propagation
+and the state of the heterogeneous medium did not change during a given calculation. This resorted to using snapshots taken at different times 
+in such a moving medium, and performing numerical simulations for each of them (independently), considering each of them as static.
+This assumption was applied following the result of \cite{Massacret2012Simplifiedmodelingof}, who said that the effect of the flow velocity temporal gradient is less important
+than the effects coming from temperature gradients, at least for his simplified upper-core region model
+(the effects coming from the flow velocity temporal gradient was about five times smaller than that coming from the temperature gradient).
+However that study also mentions that it is not clear if the `frozen fluid' hypothesis is applicable to more complex gradient fields
+(in the study of \cite{Massacret2012Simplifiedmodelingof}, a gradient field having a simple cylindrical shape was used for their ray-tracing calculation).
+Also, when the propagation distance is very long, the gradient field may change during the propagation and thus the `frozen fluid' approximation may not be applicable any more.
+
+At the end of this thesis, we still have no knowledge about how the amount of acoustic fluctuation will be changed by the influence of temporal changes of the medium heterogeneity.
+Thus, in order to study the effect of such a transient medium, further studies will be necessary. For instance, acoustic wave propagation simulations
+that take into account the flow gradient field, with a realistic heterogeneous medium coming for instance from the PLAJEST data, could be performed.
+However we currently have no SEM code that may take into account such a moving medium. Support for moving media, following for instance the initial numerical work
+of \cite{KaDu08} for a flow with constant and uniform velocity, should be added.
+However, this may be technically complex because in such a case Equation \ref{eq:1_43} needs to be used,
+but this equation has a third-order temporal derivative term, which would imply changing the whole time scheme that is used in the SPECFEM code as well
+as in other classical SEM software packages.
+One possible option to consider would be to calculate this third-order derivative using some approximation; \cite{Ashyralyev2007Anoteon} for instance
+proposed an approximation using a Taylor decomposition.
+Another option would be to implement a new time-marching scheme, suitable for third-order time derivatives.
+

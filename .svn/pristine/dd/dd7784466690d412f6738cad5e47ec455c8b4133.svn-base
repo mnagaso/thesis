@@ -1,0 +1,202 @@
+
+%% below to display overfull boxes with black boxes
+%\documentclass[12pt,twoside,a4paper,draft]{book}
+\documentclass[12pt,twoside,a4paper]{book}
+
+\usepackage[french,american]{babel}
+
+\usepackage{gji_extra}
+
+% figures
+\usepackage{graphicx}% Include figure files
+\graphicspath{ {images/} }
+\usepackage{epsfig}
+
+%%% extensions minimales
+\RequirePackage[utf8]{inputenc}       %% encodage du texte
+\RequirePackage[TS1,T1]{fontenc}      %% encodage des fontes
+
+% nicer fonts
+\usepackage{times}
+
+% latex math tools
+% MN these packages are necessary for compiling the equations in the chapter 1
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{amsmath} % for the "align" and "align*" environments
+
+% colors to show the corrections
+%\usepackage[dvipsnames,usenames]{xcolor}
+
+%% macros Genevieve pour headers et page numbers
+\usepackage{fancyheadings}
+\usepackage{barnes_thesis_modified_2017}
+\usepackage{clearchap}
+
+%% packages needed by Masaru
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{siunitx}
+\usepackage{setspace}
+\usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+
+% just bounding box of the figures for draft
+%\psdraft
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% A4 paper
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{a4wide}
+\textwidth 17cm
+\textheight 24.9cm
+\oddsidemargin -4.5mm
+\evensidemargin -4.5mm
+\topmargin -14mm
+%%%\topmargin -3mm
+
+% biblio GJI
+\bibliographystyle{gji}
+\renewcommand{\cite}[1]{\citet{#1}}
+
+%% DK DK added for Masaru
+%% biber and BibLaTeX create problems; let us use standard bibtex instead
+\newcommand{\parencite}[1]{\citep{#1}}
+\newcommand{\textcite}[1]{\citet{#1}}
+
+% colors to show the corrections
+%\newcommand{\red}[1]{\textbf{\textcolor{Red}{#1}}}
+%\newcommand{\blue}[1]{\textbf{\textcolor{Blue}{#1}}}
+%\newcommand{\cyan}[1]{\textbf{\textcolor{Cyan}{#1}}}
+%\newcommand{\green}[1]{\textbf{\textcolor{Green}{#1}}}
+%\newcommand{\magenta}[1]{\textbf{\textcolor{Magenta}{#1}}}
+%\newcommand{\orange}[1]{\textbf{\textcolor{Orange}{#1}}}
+%\newcommand{\red}[1]{#1}
+%\newcommand{\blue}[1]{#1}
+%\newcommand{\cyan}[1]{#1}
+
+%%%%%%%%%% DK DK
+% comments between authors
+%\newcommand{\toall}[1]{\textbf{\orange{@@@ To all: #1 @@@}}}
+%\newcommand{\todimi}[1]{\textbf{\blue{@@@ Dimitri: #1 @@@}}}
+%\newcommand{\todimitri}[1]{\textbf{\blue{@@@ Dimitri: #1 @@@}}}
+%\newcommand{\tomasaru}[1]{\textbf{\red{*** Masaru: #1 ***}}}
+%\newcommand{\toall}[1]{}
+%\newcommand{\todimi}[1]{}
+%\newcommand{\tomasaru}[1]{}
+%%%%%%%%%% DK DK
+%\newcommand{\frommasaru}[1]{\textbf{\magenta{*** Comment from Masaru: #1 ***}}}
+%\newcommand{\fromdimitri}[1]{\textbf{\green{*** Comment from Dimitri: #1 ***}}}
+%\newcommand{\fromdimi}[1]{\textbf{\green{*** Comment from Dimitri: #1 ***}}}
+%\newcommand{\frommasaru}[1]{}
+%\newcommand{\fromdimitri}[1]{}
+%\newcommand{\fromdimi}[1]{}
+
+%\newcommand{\infrench}[1]{\textbf{\red{#1}}}
+%\newcommand{\infrenchnotfinalyet}[1]{\textbf{\red{#1 }}}
+%\newcommand{\infrenchfinal}[1]{\textbf{\orange{#1 }}}
+%\newcommand{\inFrench}[1]{\textbf{\red{#1}}}
+%\newcommand{\inFrenchnotfinalyet}[1]{\textbf{\red{#1 }}}
+%\newcommand{\inFrenchfinal}[1]{\textbf{\orange{#1 }}}
+
+% new commands
+\def\stackunder#1#2{\mathrel{\mathop{#2}\limits_{#1}}}
+\def\dfrac#1#2{{\displaystyle {\frac{#1}{#2}}}}
+\renewcommand{\widetilde}[1]{\tilde{#1}}
+\newcommand{\Nsymbol}{\hbox{\rm I\kern -0.18 em N}}
+\newcommand{\Rsymbol}{\hbox{\rm I\kern -0.18 em R}}
+\newcommand{\degree}{{^{\circ}}}
+
+% slanted figure captions
+\newcommand{\slantedcaption}[1]{\caption{{\small \sl #1}}}
+
+% create thumbnails
+\usepackage{thumbpdf}
+
+% hyperlinks to sections and references
+\usepackage[bookmarks=true,bookmarksnumbered=true,pdfpagemode=None,pdfstartview=FitH,pdfpagelayout=SinglePage,colorlinks=true,linkcolor=magenta,citecolor=blue,urlcolor=red,pdfborder={0 0 0}]{hyperref}
+
+%% DK DK for Masaru, redefined this from SIunits package because by default it does not work
+\renewcommand{\textdegree}[1]{{$^\circ$}}
+
+%% MN MN reduce space around float (Figures etc.)
+\setlength\floatsep{1.25\baselineskip plus 3pt minus 2pt}
+\setlength\textfloatsep{1.25\baselineskip plus 3pt minus 2pt}
+\setlength\intextsep{1.25\baselineskip plus 3pt minus 2 pt}
+
+\begin{document}
+
+\parskip 8pt
+\parindent 0pt
+
+%\input{couverture}
+
+\clearpage
+%\input{licence}
+
+\clearpage
+\pagestyle{fancyplain}
+
+\parskip 0pt
+\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries Table\ of\ contents}}
+\rhead[\fancyplain{}{\bfseries Table\ of\ contents}]{\fancyplain{}{\bfseries\thepage}}
+\tableofcontents
+
+\parskip 8pt
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% spacing for the main text
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\parindent}{2.3em}
+\setlength{\parskip}{1em}
+
+%% Here is the summary in French
+% no chapter or part header for the summary
+\cleardoublepage
+\begin{otherlanguage}{french}
+\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries R\'esum\'e en fran\c{c}ais}}
+\rhead[\fancyplain{}{\bfseries R\'esum\'e en fran\c{c}ais}]{\fancyplain{}{\bfseries\thepage}}
+%\input{Abstract_in_French}
+\end{otherlanguage}
+
+%% Here is the summary in English
+% no chapter or part header for the summary
+\cleardoublepage
+\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries Summary in English}}
+\rhead[\fancyplain{}{\bfseries Summary in English}]{\fancyplain{}{\bfseries\thepage}}
+%\input{Abstract_in_English}
+
+% done
+\cleardoublepage
+\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries Chapter\ \thechapter \ -- \leftmark}}
+\rhead[\fancyplain{}{\bfseries Chapter\ \thechapter \ -- \leftmark}]{\fancyplain{}{\bfseries\thepage}}
+%\input{Chapter1_Introduction}  %%%%%%% Chapter 1: Introduction
+
+\cleardoublepage
+%\input{Chapter2}  %%%%%%% Chapter 2: basic equations and physical description of the problem
+
+\cleardoublepage
+%\input{Chapter3}  %%%%%%% Chapter 3: SEISMIC_CPML + 2D results of the article with Said
+
+\cleardoublepage
+\input{Chapter4}  %%%%%%% Chapter 4: 3D results
+
+\cleardoublepage
+%\input{Chapter5_Conclusions_in_English}  %%%%%%% Chapter 5: Conclusions in English
+
+%%%%%% here we include these same conclusions, translated to French by Dimitri, as required by Ecole Doctorale.
+%\cleardoublepage
+%\input{Chapter5_Conclusions_in_French}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% normal spacing for the references
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\singlespacing
+
+% no chapter or part header for conclusions and biblio
+\cleardoublepage
+\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\leftmark}}
+\rhead[\fancyplain{}{\bfseries\leftmark}]{\fancyplain{}{\bfseries\thepage}}
+\bibliography{Bibliography}
+
+\end{document}
+

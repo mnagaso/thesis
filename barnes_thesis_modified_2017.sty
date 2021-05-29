@@ -1,0 +1,106 @@
+%=====================================================
+% style pour le haut de page
+%=====================================================
+
+\pagestyle{fancyplain}
+\addtolength{\headheight}{1.6pt} % si 11pt
+%
+\def\NomPartie{}
+%% DK DK nov2017 changed the value for Masaru  \addtolength{\headwidth}{4.85cm}
+\addtolength{\headwidth}{3.35cm}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\newcommand{\partmark}[1]{\markright{\thepart\ #1}}
+\cfoot{}
+
+%======================================================
+
+% parties pour new headers
+\newcommand{\Partie}[1]{
+  \part{#1}
+  \def\NomPartie{#1}
+}
+\newcommand{\PartieII}[2]{
+  \part[#1]{#2}
+  \def\NomPartie{#1}
+}
+
+%======================================================
+
+\renewcommand\part{\cleardoublepage
+                 \thispagestyle{empty}%
+                 \if@twocolumn
+                     \onecolumn
+                     \@tempswatrue
+                   \else
+                     \@tempswafalse
+                 \fi
+                 \hbox{}\vfil
+                 \secdef\@part\@spart}
+
+\def\@part[#1]#2{%
+    \ifnum \c@secnumdepth >-2\relax
+      \refstepcounter{part}%
+      \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+    \else
+      \addcontentsline{toc}{part}{#1}%
+    \fi
+    \markboth{}{}
+    {\centering
+     \interlinepenalty \@M
+     \normalfont
+     \ifnum \c@secnumdepth >-2\relax
+       \huge\bfseries \partname~\thepart
+       \par
+       \vskip 20\p@
+     \fi
+     \thispagestyle{empty}
+     \Huge \bfseries #2\par}%
+    \@endpart}
+
+\renewcommand\tableofcontents{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \chapter*{\vspace*{-1.5cm}\contentsname
+        \@mkboth{Table of contents}{Table of contents}}
+    \def\NomPartie{}
+    \thispagestyle{empty}
+	\vspace*{-0.5cm}
+    \@starttoc{toc}%
+    \if@restonecol\twocolumn\fi
+    }
+
+\@ifundefined{chapter}%
+ {\def\thebibliography#1{\section*{\refname\@mkboth
+   {\uppercase{\refname}}{\uppercase{\refname}}}\list
+   {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}
+   \leftmargin\labelwidth
+   \advance\leftmargin\labelsep
+   \advance\leftmargin\bibindent
+   \itemindent -\bibindent
+   \listparindent \itemindent
+   \parsep \z@
+   \usecounter{enumi}}
+   \def\newblock{}
+   \sloppy
+   \sfcode`\.=1000\relax}}
+ {\def\thebibliography#1{\chapter*{\refname\@mkboth
+   {\refname}{}}
+    \def\NomPartie{}
+   \thispagestyle{empty}
+   \list
+   {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}
+   \leftmargin\labelwidth
+   \advance\leftmargin\labelsep
+   \advance\leftmargin\bibindent
+   \itemindent -\bibindent
+   \listparindent \itemindent
+   \parsep \z@
+   \usecounter{enumi}}
+   \def\newblock{}
+   \sloppy
+   \sfcode`\.=1000\relax}}
+
